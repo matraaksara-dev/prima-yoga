@@ -1,4 +1,5 @@
 export interface HeroData {
+  eyebrow?: string;
   headline: string;
   subheadline: string;
   primaryCTA: {
@@ -11,11 +12,15 @@ export interface HeroData {
   };
 }
 
+export interface TimelineNode {
+  year: string;
+  title: string;
+  insight: string;
+}
+
 export interface AboutData {
-  openingHook: string;
-  journey: string;
-  approach: string;
-  vision: string;
+  quote: string;
+  timeline: TimelineNode[];
   closingLine: string;
 }
 
@@ -38,9 +43,17 @@ export interface CredibilityItem {
   statement: string;
 }
 
+export interface TestimonialData {
+  id: string;
+  name: string;
+  role: string;
+  quote: string;
+}
+
 export interface CertificationData {
   id: string;
   name: string;
+  category: "Perbankan" | "Coaching & Psikologi" | "Mutu & Standar";
   issuer: string;
   year: number;
 }
@@ -58,6 +71,8 @@ export interface ContactData {
   body: string;
   ctaButtonText: string;
   email: string;
+  whatsappNumber: string;
+  whatsappButtonText: string;
 }
 
 export interface MediaAssets {
@@ -66,12 +81,19 @@ export interface MediaAssets {
   heroBackgroundAbstract?: string;
 }
 
+export interface PartnerLogo {
+  id: string;
+  name: string;
+}
+
 export interface SiteData {
   hero: HeroData;
   about: AboutData;
   services: ServiceData[];
   ecosystemPillars: EcosystemPillar[];
   credibility: CredibilityItem[];
+  testimonials: TestimonialData[];
+  partnerLogos: PartnerLogo[];
   certifications: CertificationData[];
   seo: SeoData;
   contact: ContactData;

@@ -1,12 +1,18 @@
 ---
 import { siteContent } from '../data/siteContent';
-import { ArrowRight } from 'lucide-preact';
+import { ArrowRight } from 'lucide-react';
 import FadeIn from './FadeIn';
+import TrustBar from './TrustBar';
 ---
 <section class="relative pt-24 pb-32 overflow-hidden px-6 lg:px-8 bg-gradient-to-br from-brand-secondary/40 via-brand-primary to-brand-primary text-text-on-dark">
   <div class="max-w-[1024px] mx-auto grid lg:grid-cols-2 gap-12 items-center">
     <div class="max-w-2xl relative z-10">
       <FadeIn client:load delay={0}>
+        {siteContent.hero.eyebrow && (
+          <div class="inline-block px-3 py-1 mb-6 border border-brand-secondary text-brand-secondary text-sm font-semibold tracking-wide rounded-full bg-brand-secondary/10">
+            {siteContent.hero.eyebrow}
+          </div>
+        )}
         <h1 class="text-4xl md:text-[3rem] leading-[1.15] font-bold tracking-tight mb-6 text-white">
           {siteContent.hero.headline}
         </h1>
@@ -17,33 +23,36 @@ import FadeIn from './FadeIn';
         </p>
       </FadeIn>
       <FadeIn client:load delay={300}>
-      <div class="flex flex-col sm:flex-row gap-4">
-        <a 
-          href={siteContent.hero.primaryCTA.url}
-          class="inline-flex items-center justify-center bg-brand-secondary text-white font-semibold px-8 py-4 rounded-md hover:opacity-90 transition-all shadow-sm gap-2"
-        >
-          {siteContent.hero.primaryCTA.label}
-          <ArrowRight className="w-4 h-4" />
-        </a>
-        <a 
-          href={siteContent.hero.secondaryCTA.url}
-          class="inline-flex items-center justify-center bg-transparent border-2 border-white text-white font-semibold px-8 py-4 rounded-md hover:bg-white hover:text-brand-primary transition-all"
-        >
-          {siteContent.hero.secondaryCTA.label}
-        </a>
-      </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a 
+            href={siteContent.hero.primaryCTA.url}
+            class="inline-flex items-center justify-center bg-brand-secondary text-white font-semibold px-8 py-4 rounded-md hover:scale-[0.98] active:scale-95 transition-all shadow-sm gap-2"
+          >
+            {siteContent.hero.primaryCTA.label}
+            <ArrowRight className="w-4 h-4" />
+          </a>
+          <a 
+            href={siteContent.hero.secondaryCTA.url}
+            class="inline-flex items-center justify-center bg-transparent border-2 border-white text-white font-semibold px-8 py-4 rounded-md hover:bg-white hover:text-brand-primary hover:scale-[0.98] active:scale-95 transition-all"
+          >
+            {siteContent.hero.secondaryCTA.label}
+          </a>
+        </div>
       </FadeIn>
+      
+      <TrustBar client:load />
     </div>
-    <div class="relative hidden lg:block">
-      <div class="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl relative z-10">
-        <div class="absolute inset-0 bg-brand-primary/10 group-hover:bg-transparent transition-colors z-20"></div>
+    
+    <div class="relative hidden lg:block group">
+      <div class="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl relative z-10 transition-transform duration-1000 ease-out group-hover:scale-[1.02]">
+        <div class="absolute inset-0 bg-brand-primary/20 group-hover:bg-transparent transition-colors duration-700 z-20 pointer-events-none"></div>
         <img 
           src={siteContent.media.heroPortrait} 
           alt="Prima Yoga Lan - Professional Portrait" 
-          class="w-full h-full object-cover"
+          class="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-105"
         />
       </div>
-      <div class="absolute -bottom-8 -right-8 w-64 h-64 bg-brand-secondary/20 rounded-full blur-3xl -z-10"></div>
+      <div class="absolute -bottom-8 -right-8 w-64 h-64 bg-brand-secondary/20 rounded-full blur-3xl -z-10 group-hover:bg-brand-secondary/30 transition-colors duration-1000"></div>
     </div>
   </div>
 </section>

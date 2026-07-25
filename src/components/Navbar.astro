@@ -1,17 +1,13 @@
 ---
 import { siteContent } from '../data/siteContent';
+import ActiveNav from './ActiveNav';
 ---
 <nav class="sticky top-0 z-50 bg-brand-primary text-text-on-dark border-b border-border/20">
   <div class="max-w-[1024px] mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
     <div class="font-serif font-bold text-xl tracking-tight text-white">
       Prima Yoga Lan.
     </div>
-    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
-      <a href="#about" class="hover:text-white transition-colors">Profil</a>
-      <a href="#services" class="hover:text-white transition-colors">Layanan</a>
-      <a href="#ecosystem" class="hover:text-white transition-colors">Ekosistem</a>
-      <a href="#credibility" class="hover:text-white transition-colors">Kredibilitas</a>
-    </div>
+    <ActiveNav client:load />
     <div class="flex items-center gap-4">
       <a 
         href={siteContent.hero.primaryCTA.url}

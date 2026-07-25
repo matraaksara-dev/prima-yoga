@@ -6,9 +6,12 @@ import About from '../components/About.astro';
 import Services from '../components/Services.astro';
 import EcosystemMapping from '../components/EcosystemMapping.astro';
 import Credibility from '../components/Credibility.astro';
-import Certifications from '../components/Certifications.astro';
+import CertificationsTabs from '../components/CertificationsTabs';
+import TestimonialCarousel from '../components/TestimonialCarousel';
+import LogoStrip from '../components/LogoStrip';
 import ContactCTA from '../components/ContactCTA.astro';
 import Footer from '../components/Footer.astro';
+import { siteContent } from '../data/siteContent';
 ---
 <BaseLayout>
   <main class="flex-1">
@@ -18,11 +21,17 @@ import Footer from '../components/Footer.astro';
     <Services />
     <EcosystemMapping />
     
-    <section id="credibility" class="py-24 bg-surface px-6 lg:px-8">
-      <div class="max-w-[1024px] mx-auto grid lg:grid-cols-2 gap-16">
-        <Credibility />
-        <Certifications />
+    <section id="credibility" class="pt-24 pb-12 bg-black px-6 lg:px-8 overflow-hidden">
+      <div class="max-w-[1024px] mx-auto">
+        <TestimonialCarousel client:visible testimonials={siteContent.testimonials} />
+        
+        <div class="grid lg:grid-cols-2 gap-16 mt-8">
+          <Credibility />
+          <CertificationsTabs client:visible certifications={siteContent.certifications} />
+        </div>
       </div>
+      
+      <LogoStrip client:visible logos={siteContent.partnerLogos} />
     </section>
     
     <ContactCTA />

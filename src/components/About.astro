@@ -1,26 +1,28 @@
 ---
 import { siteContent } from '../data/siteContent';
 import FadeIn from './FadeIn';
+import VerticalTimeline from './VerticalTimeline';
 ---
 <section id="about" class="py-24 bg-brand-primary px-6 lg:px-8">
   <div class="max-w-[1024px] mx-auto">
     <FadeIn client:visible>
-      <h2 class="text-3xl font-bold mb-12 text-text-primary">Filosofi & Perjalanan</h2>
+      <h2 class="text-3xl font-bold mb-16 text-white text-center">Filosofi & Perjalanan</h2>
     </FadeIn>
-    <div class="grid md:grid-cols-[1fr_2fr] gap-12 items-start">
-      <FadeIn client:visible delay={150}>
-        <div class="text-2xl font-serif leading-snug font-medium text-brand-accent">
-          "{siteContent.about.openingHook}"
-        </div>
-      </FadeIn>
-      <FadeIn client:visible delay={300}>
-        <div class="space-y-6 text-text-muted leading-relaxed">
-          <p>{siteContent.about.journey}</p>
-          <p>{siteContent.about.approach}</p>
-          <p>{siteContent.about.vision}</p>
-          <p class="font-medium text-text-primary mt-8 text-lg">{siteContent.about.closingLine}</p>
-        </div>
-      </FadeIn>
+    
+    <FadeIn client:visible delay={150}>
+      <div class="text-2xl md:text-3xl lg:text-4xl font-serif leading-snug font-medium text-brand-secondary text-center max-w-4xl mx-auto mb-20 italic">
+        "{siteContent.about.quote}"
+      </div>
+    </FadeIn>
+    
+    <div class="mb-20">
+      <VerticalTimeline client:visible timeline={siteContent.about.timeline} />
     </div>
+    
+    <FadeIn client:visible delay={300}>
+      <div class="text-center">
+        <p class="font-medium text-white text-xl">{siteContent.about.closingLine}</p>
+      </div>
+    </FadeIn>
   </div>
 </section>

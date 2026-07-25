@@ -1,33 +1,17 @@
 ---
 import { siteContent } from '../data/siteContent';
-import { Layers } from 'lucide-preact';
 import FadeIn from './FadeIn';
+import EcosystemDiagram from './EcosystemDiagram';
 ---
-<section id="ecosystem" class="py-24 bg-gradient-to-b from-brand-primary from-50% to-brand-secondary/30 px-6 lg:px-8 border-t border-black">
-  <div class="max-w-[1024px] mx-auto">
+<section id="ecosystem" class="py-24 bg-gradient-to-b from-brand-primary from-50% to-brand-secondary/20 px-6 lg:px-8 border-t border-white/10">
+  <div class="max-w-[1024px] mx-auto overflow-hidden">
     <FadeIn client:visible>
-      <div class="text-center max-w-2xl mx-auto mb-16">
-        <h2 class="text-3xl font-bold mb-4 text-text-primary">Ecosystem Mapping</h2>
-        <p class="text-text-muted text-lg">4 pilar utama yang mendukung visi pertumbuhan berkelanjutan.</p>
+      <div class="text-center max-w-2xl mx-auto mb-8">
+        <h2 class="text-3xl font-bold mb-4 text-white">Ecosystem Mapping</h2>
+        <p class="text-gray-400 text-lg">4 pilar utama yang terhubung untuk mendukung visi pertumbuhan berkelanjutan.</p>
       </div>
     </FadeIn>
     
-    <div class="grid md:grid-cols-2 gap-6">
-      {siteContent.ecosystemPillars.map((pillar, idx) => (
-        <FadeIn client:visible delay={idx * 100}>
-          <div class="bg-bg p-8 rounded-lg border border-border hover:border-brand-secondary/50 transition-colors">
-          <div class="flex items-start gap-4 mb-4">
-            <div class="p-3 bg-brand-accent/10 rounded-md text-brand-accent shrink-0">
-              <Layers className="w-6 h-6" />
-            </div>
-            <div>
-              <h3 class="text-xl font-bold text-text-primary mb-2 font-serif">{pillar.pillarName}</h3>
-              <p class="text-text-muted leading-relaxed">{pillar.description}</p>
-            </div>
-          </div>
-          </div>
-        </FadeIn>
-      ))}
-    </div>
+    <EcosystemDiagram client:visible pillars={siteContent.ecosystemPillars} />
   </div>
 </section>

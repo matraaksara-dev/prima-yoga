@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'preact/hooks';
-import { Moon, Sun } from 'lucide-preact';
+import { useEffect, useState } from 'react';
+import { Moon, Sun } from 'lucide-react';
 
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');

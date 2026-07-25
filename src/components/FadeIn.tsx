@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from 'preact/hooks';
-import type { ComponentChildren } from 'preact';
+import { useEffect, useRef, useState, ReactNode } from 'react';
 
 interface FadeInProps {
-  children: ComponentChildren;
+  children: ReactNode;
   delay?: number;
   className?: string;
 }
@@ -41,7 +40,7 @@ export default function FadeIn({ children, delay = 0, className = '' }: FadeInPr
   return (
     <div
       ref={domRef}
-      class={`${className} ${isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}
+      className={`${className} ${isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}
       style={{ animationDelay: `${delay}ms`, animationFillMode: 'forwards' }}
     >
       {children}
