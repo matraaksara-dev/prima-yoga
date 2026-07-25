@@ -1,0 +1,43 @@
+---
+import '../styles/global.css';
+import { siteContent } from '../data/siteContent';
+
+const { seo } = siteContent;
+---
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{seo.pageTitle}</title>
+    <meta name="description" content={seo.metaDescription} />
+    
+    <meta property="og:title" content={seo.ogTitle} />
+    <meta property="og:description" content={seo.ogDescription} />
+    <meta property="og:image" content={seo.ogImage} />
+    <meta property="og:type" content="website" />
+    
+    <!-- Inline script to prevent FOUC (Flash of Unstyled Content) for Dark Mode -->
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+    
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+      window.localStorage.setItem('theme', theme);
+    </script>
+  </head>
+  <body class="bg-bg text-text-primary min-h-screen flex flex-col antialiased">
+    <slot />
+  </body>
+</html>

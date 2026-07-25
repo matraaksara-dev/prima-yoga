@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Services from '../components/Services.astro';
+import EcosystemMapping from '../components/EcosystemMapping.astro';
+import Credibility from '../components/Credibility.astro';
+import Certifications from '../components/Certifications.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout>
+  <main class="flex-1">
+    <Navbar />
+    <Hero />
+    <About />
+    <Services />
+    <EcosystemMapping />
+    
+    <section id="credibility" class="py-24 bg-surface px-6 lg:px-8">
+      <div class="max-w-[1024px] mx-auto grid lg:grid-cols-2 gap-16">
+        <Credibility />
+        <Certifications />
+      </div>
+    </section>
+    
+    <ContactCTA />
+    <Footer />
+  </main>
+</BaseLayout>

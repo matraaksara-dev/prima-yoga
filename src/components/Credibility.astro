@@ -1,0 +1,20 @@
+---
+import { siteContent } from '../data/siteContent';
+import { CheckCircle2 } from 'lucide-preact';
+import FadeIn from './FadeIn';
+---
+<div>
+  <FadeIn client:visible>
+    <h2 class="text-3xl font-bold mb-10 text-text-primary">Kredibilitas Teruji</h2>
+  </FadeIn>
+  <ul class="space-y-8">
+    {siteContent.credibility.map((item, idx) => (
+      <FadeIn client:visible delay={idx * 75}>
+        <li class="flex gap-4">
+          <CheckCircle2 className="w-6 h-6 text-brand-accent shrink-0 mt-1" />
+          <p class="text-text-muted leading-relaxed text-lg">{item.statement}</p>
+        </li>
+      </FadeIn>
+    ))}
+  </ul>
+</div>

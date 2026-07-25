@@ -1,0 +1,24 @@
+---
+import { siteContent } from '../data/siteContent';
+import FadeIn from './FadeIn';
+---
+<section id="services" class="py-24 px-6 lg:px-8 border-y border-black bg-gradient-to-b from-brand-secondary/30 via-brand-primary to-brand-primary">
+  <div class="max-w-[1024px] mx-auto">
+    <FadeIn client:visible>
+      <h2 class="text-3xl font-bold mb-16 text-center text-text-primary">Pilar Layanan Strategis</h2>
+    </FadeIn>
+    <div class="grid md:grid-cols-3 gap-8">
+      {siteContent.services.map((service, idx) => (
+        <FadeIn client:visible delay={idx * 150}>
+          <div class="bg-bg border border-border p-8 rounded-md hover:-translate-y-1 hover:shadow-xl hover:shadow-black/5 transition-all duration-300 group hover:border-brand-secondary/50">
+            <div class="w-12 h-12 bg-surface rounded-md flex items-center justify-center mb-6 group-hover:bg-brand-accent/10 transition-colors">
+              <span class="font-serif font-bold text-xl text-brand-accent">0{idx + 1}</span>
+            </div>
+            <h3 class="text-xl font-bold mb-4 font-serif text-text-primary">{service.title}</h3>
+            <p class="text-text-muted leading-relaxed">{service.description}</p>
+          </div>
+        </FadeIn>
+      ))}
+    </div>
+  </div>
+</section>

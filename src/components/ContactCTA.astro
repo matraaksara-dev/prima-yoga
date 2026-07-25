@@ -1,0 +1,26 @@
+---
+import { siteContent } from '../data/siteContent';
+import { Mail } from 'lucide-preact';
+import FadeIn from './FadeIn';
+---
+<section class="py-32 px-6 lg:px-8 bg-gradient-to-r from-brand-secondary to-brand-primary text-white text-center">
+  <div class="max-w-[800px] mx-auto">
+    <FadeIn client:visible delay={0}>
+      <h2 class="text-4xl font-bold mb-6 font-serif">{siteContent.contact.headline}</h2>
+    </FadeIn>
+    <FadeIn client:visible delay={100}>
+      <p class="text-lg text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+        {siteContent.contact.subheadline}
+      </p>
+    </FadeIn>
+    <FadeIn client:visible delay={200}>
+      <a 
+        href={`mailto:${siteContent.contact.email}`}
+        class="inline-flex items-center justify-center bg-brand-secondary text-white font-semibold px-10 py-5 rounded-md hover:opacity-90 transition-all shadow-lg text-lg gap-3"
+      >
+        <Mail className="w-5 h-5" />
+        {siteContent.contact.ctaButtonText}
+      </a>
+    </FadeIn>
+  </div>
+</section>
