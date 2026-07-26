@@ -1,0 +1,983 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+public/
+  images/
+    about-portrait.webp
+    hero-portrait.png
+  favicon.ico
+  favicon.svg
+src/
+  components/
+    About.astro
+    Certifications.astro
+    ContactCTA.astro
+    Credibility.astro
+    EcosystemMapping.astro
+    FadeIn.tsx
+    Footer.astro
+    Hero.astro
+    Navbar.astro
+    Services.astro
+    ThemeToggle.tsx
+  data/
+    siteContent.ts
+  layouts/
+    BaseLayout.astro
+  pages/
+    index.astro
+  styles/
+    global.css
+  types/
+    index.ts
+.gitignore
+AGENTS.md
+astro.config.mjs
+CLAUDE.md
+package.json
+README.md
+tsconfig.json
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="public/favicon.svg">
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 128 128">
+    <path d="M50.4 78.5a75.1 75.1 0 0 0-28.5 6.9l24.2-65.7c.7-2 1.9-3.2 3.4-3.2h29c1.5 0 2.7 1.2 3.4 3.2l24.2 65.7s-11.6-7-28.5-7L67 45.5c-.4-1.7-1.6-2.8-2.9-2.8-1.3 0-2.5 1.1-2.9 2.7L50.4 78.5Zm-1.1 28.2Zm-4.2-20.2c-2 6.6-.6 15.8 4.2 20.2a17.5 17.5 0 0 1 .2-.7 5.5 5.5 0 0 1 5.7-4.5c2.8.1 4.3 1.5 4.7 4.7.2 1.1.2 2.3.2 3.5v.4c0 2.7.7 5.2 2.2 7.4a13 13 0 0 0 5.7 4.9v-.3l-.2-.3c-1.8-5.6-.5-9.5 4.4-12.8l1.5-1a73 73 0 0 0 3.2-2.2 16 16 0 0 0 6.8-11.4c.3-2 .1-4-.6-6l-.8.6-1.6 1a37 37 0 0 1-22.4 2.7c-5-.7-9.7-2-13.2-6.2Z" />
+    <style>
+        path { fill: #000; }
+        @media (prefers-color-scheme: dark) {
+            path { fill: #FFF; }
+        }
+    </style>
+</svg>
+</file>
+
+<file path="src/components/About.astro">
+---
+import { siteContent } from '../data/siteContent';
+import FadeIn from './FadeIn';
+---
+<section id="about" class="py-24 bg-brand-primary px-6 lg:px-8">
+  <div class="max-w-[1024px] mx-auto">
+    <FadeIn client:visible>
+      <h2 class="text-3xl font-bold mb-12 text-text-primary">Filosofi & Perjalanan</h2>
+    </FadeIn>
+    <div class="grid md:grid-cols-[1fr_2fr] gap-12 items-start">
+      <FadeIn client:visible delay={150}>
+        <div class="text-2xl font-serif leading-snug font-medium text-brand-accent">
+          "{siteContent.about.openingHook}"
+        </div>
+      </FadeIn>
+      <FadeIn client:visible delay={300}>
+        <div class="space-y-6 text-text-muted leading-relaxed">
+          <p>{siteContent.about.journey}</p>
+          <p>{siteContent.about.approach}</p>
+          <p>{siteContent.about.vision}</p>
+          <p class="font-medium text-text-primary mt-8 text-lg">{siteContent.about.closingLine}</p>
+        </div>
+      </FadeIn>
+    </div>
+  </div>
+</section>
+</file>
+
+<file path="src/components/Certifications.astro">
+---
+import { siteContent } from '../data/siteContent';
+---
+<div>
+  <h2 class="text-3xl font-bold mb-10 text-text-primary">Lisensi & Sertifikasi</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    {siteContent.certifications.map((cert) => (
+      <div class="bg-bg p-5 rounded-md border border-border hover:border-brand-accent/30 transition-colors">
+        <div class="text-xs font-semibold text-brand-accent mb-2 tracking-wider uppercase flex justify-between">
+          <span>{cert.issuer}</span>
+          <span>{cert.year}</span>
+        </div>
+        <h4 class="font-semibold text-text-primary text-sm leading-snug">{cert.name}</h4>
+      </div>
+    ))}
+  </div>
+</div>
+</file>
+
+<file path="src/components/ContactCTA.astro">
+---
+import { siteContent } from '../data/siteContent';
+import { Mail } from 'lucide-preact';
+import FadeIn from './FadeIn';
+---
+<section class="py-32 px-6 lg:px-8 bg-gradient-to-r from-brand-secondary to-brand-primary text-white text-center">
+  <div class="max-w-[800px] mx-auto">
+    <FadeIn client:visible delay={0}>
+      <h2 class="text-4xl font-bold mb-6 font-serif">{siteContent.contact.headline}</h2>
+    </FadeIn>
+    <FadeIn client:visible delay={100}>
+      <p class="text-lg text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+        {siteContent.contact.subheadline}
+      </p>
+    </FadeIn>
+    <FadeIn client:visible delay={200}>
+      <a 
+        href={`mailto:${siteContent.contact.email}`}
+        class="inline-flex items-center justify-center bg-brand-secondary text-white font-semibold px-10 py-5 rounded-md hover:opacity-90 transition-all shadow-lg text-lg gap-3"
+      >
+        <Mail className="w-5 h-5" />
+        {siteContent.contact.ctaButtonText}
+      </a>
+    </FadeIn>
+  </div>
+</section>
+</file>
+
+<file path="src/components/Credibility.astro">
+---
+import { siteContent } from '../data/siteContent';
+import { CheckCircle2 } from 'lucide-preact';
+import FadeIn from './FadeIn';
+---
+<div>
+  <FadeIn client:visible>
+    <h2 class="text-3xl font-bold mb-10 text-text-primary">Kredibilitas Teruji</h2>
+  </FadeIn>
+  <ul class="space-y-8">
+    {siteContent.credibility.map((item, idx) => (
+      <FadeIn client:visible delay={idx * 75}>
+        <li class="flex gap-4">
+          <CheckCircle2 className="w-6 h-6 text-brand-accent shrink-0 mt-1" />
+          <p class="text-text-muted leading-relaxed text-lg">{item.statement}</p>
+        </li>
+      </FadeIn>
+    ))}
+  </ul>
+</div>
+</file>
+
+<file path="src/components/EcosystemMapping.astro">
+---
+import { siteContent } from '../data/siteContent';
+import { Layers } from 'lucide-preact';
+import FadeIn from './FadeIn';
+---
+<section id="ecosystem" class="py-24 bg-gradient-to-b from-brand-primary from-50% to-brand-secondary/30 px-6 lg:px-8 border-t border-black">
+  <div class="max-w-[1024px] mx-auto">
+    <FadeIn client:visible>
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <h2 class="text-3xl font-bold mb-4 text-text-primary">Ecosystem Mapping</h2>
+        <p class="text-text-muted text-lg">4 pilar utama yang mendukung visi pertumbuhan berkelanjutan.</p>
+      </div>
+    </FadeIn>
+    
+    <div class="grid md:grid-cols-2 gap-6">
+      {siteContent.ecosystemPillars.map((pillar, idx) => (
+        <FadeIn client:visible delay={idx * 100}>
+          <div class="bg-bg p-8 rounded-lg border border-border hover:border-brand-secondary/50 transition-colors">
+          <div class="flex items-start gap-4 mb-4">
+            <div class="p-3 bg-brand-accent/10 rounded-md text-brand-accent shrink-0">
+              <Layers className="w-6 h-6" />
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-text-primary mb-2 font-serif">{pillar.pillarName}</h3>
+              <p class="text-text-muted leading-relaxed">{pillar.description}</p>
+            </div>
+          </div>
+          </div>
+        </FadeIn>
+      ))}
+    </div>
+  </div>
+</section>
+</file>
+
+<file path="src/components/FadeIn.tsx">
+import { useEffect, useRef, useState } from 'preact/hooks';
+import type { ComponentChildren } from 'preact';
+
+interface FadeInProps {
+  children: ComponentChildren;
+  delay?: number;
+  className?: string;
+}
+
+export default function FadeIn({ children, delay = 0, className = '' }: FadeInProps) {
+  const [isVisible, setIsVisible] = useState(false);
+  const domRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            if (domRef.current) {
+              observer.unobserve(domRef.current);
+            }
+          }
+        });
+      },
+      {
+        rootMargin: '0px 0px -10% 0px',
+        threshold: 0.1,
+      }
+    );
+
+    if (domRef.current) {
+      observer.observe(domRef.current);
+    }
+
+    return () => {
+      if (domRef.current) observer.unobserve(domRef.current);
+    };
+  }, []);
+
+  return (
+    <div
+      ref={domRef}
+      class={`${className} ${isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}
+      style={{ animationDelay: `${delay}ms`, animationFillMode: 'forwards' }}
+    >
+      {children}
+    </div>
+  );
+}
+</file>
+
+<file path="src/components/Footer.astro">
+---
+const currentYear = new Date().getFullYear();
+---
+<footer class="py-8 border-t border-border/20 bg-brand-primary text-center text-gray-400 text-sm px-6">
+  <div class="max-w-[1024px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+    <p>&copy; {currentYear} Prima Yoga Lan. All rights reserved.</p>
+    <div class="flex gap-6">
+      <a href="https://linkedin.com" target="_blank" class="hover:text-text-primary transition-colors">LinkedIn Profile</a>
+    </div>
+  </div>
+</footer>
+</file>
+
+<file path="src/components/Hero.astro">
+---
+import { siteContent } from '../data/siteContent';
+import { ArrowRight } from 'lucide-preact';
+import FadeIn from './FadeIn';
+---
+<section class="relative pt-24 pb-32 overflow-hidden px-6 lg:px-8 bg-gradient-to-br from-brand-secondary/40 via-brand-primary to-brand-primary text-text-on-dark">
+  <div class="max-w-[1024px] mx-auto grid lg:grid-cols-2 gap-12 items-center">
+    <div class="max-w-2xl relative z-10">
+      <FadeIn client:load delay={0}>
+        <h1 class="text-4xl md:text-[3rem] leading-[1.15] font-bold tracking-tight mb-6 text-white">
+          {siteContent.hero.headline}
+        </h1>
+      </FadeIn>
+      <FadeIn client:load delay={150}>
+        <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-10 max-w-xl">
+          {siteContent.hero.subheadline}
+        </p>
+      </FadeIn>
+      <FadeIn client:load delay={300}>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a 
+          href={siteContent.hero.primaryCTA.url}
+          class="inline-flex items-center justify-center bg-brand-secondary text-white font-semibold px-8 py-4 rounded-md hover:opacity-90 transition-all shadow-sm gap-2"
+        >
+          {siteContent.hero.primaryCTA.label}
+          <ArrowRight className="w-4 h-4" />
+        </a>
+        <a 
+          href={siteContent.hero.secondaryCTA.url}
+          class="inline-flex items-center justify-center bg-transparent border-2 border-white text-white font-semibold px-8 py-4 rounded-md hover:bg-white hover:text-brand-primary transition-all"
+        >
+          {siteContent.hero.secondaryCTA.label}
+        </a>
+      </div>
+      </FadeIn>
+    </div>
+    <div class="relative hidden lg:block">
+      <div class="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl relative z-10">
+        <div class="absolute inset-0 bg-brand-primary/10 group-hover:bg-transparent transition-colors z-20"></div>
+        <img 
+          src={siteContent.media.heroPortrait} 
+          alt="Prima Yoga Lan - Professional Portrait" 
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <div class="absolute -bottom-8 -right-8 w-64 h-64 bg-brand-secondary/20 rounded-full blur-3xl -z-10"></div>
+    </div>
+  </div>
+</section>
+</file>
+
+<file path="src/components/Navbar.astro">
+---
+import { siteContent } from '../data/siteContent';
+---
+<nav class="sticky top-0 z-50 bg-brand-primary text-text-on-dark border-b border-border/20">
+  <div class="max-w-[1024px] mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
+    <div class="font-serif font-bold text-xl tracking-tight text-white">
+      Prima Yoga Lan.
+    </div>
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+      <a href="#about" class="hover:text-white transition-colors">Profil</a>
+      <a href="#services" class="hover:text-white transition-colors">Layanan</a>
+      <a href="#ecosystem" class="hover:text-white transition-colors">Ekosistem</a>
+      <a href="#credibility" class="hover:text-white transition-colors">Kredibilitas</a>
+    </div>
+    <div class="flex items-center gap-4">
+      <a 
+        href={siteContent.hero.primaryCTA.url}
+        class="hidden sm:inline-block text-sm font-semibold bg-brand-secondary text-white px-5 py-2.5 rounded-md hover:opacity-90 transition-all shadow-sm"
+      >
+        Kolaborasi
+      </a>
+    </div>
+  </div>
+</nav>
+</file>
+
+<file path="src/components/Services.astro">
+---
+import { siteContent } from '../data/siteContent';
+import FadeIn from './FadeIn';
+---
+<section id="services" class="py-24 px-6 lg:px-8 border-y border-black bg-gradient-to-b from-brand-secondary/30 via-brand-primary to-brand-primary">
+  <div class="max-w-[1024px] mx-auto">
+    <FadeIn client:visible>
+      <h2 class="text-3xl font-bold mb-16 text-center text-text-primary">Pilar Layanan Strategis</h2>
+    </FadeIn>
+    <div class="grid md:grid-cols-3 gap-8">
+      {siteContent.services.map((service, idx) => (
+        <FadeIn client:visible delay={idx * 150}>
+          <div class="bg-bg border border-border p-8 rounded-md hover:-translate-y-1 hover:shadow-xl hover:shadow-black/5 transition-all duration-300 group hover:border-brand-secondary/50">
+            <div class="w-12 h-12 bg-surface rounded-md flex items-center justify-center mb-6 group-hover:bg-brand-accent/10 transition-colors">
+              <span class="font-serif font-bold text-xl text-brand-accent">0{idx + 1}</span>
+            </div>
+            <h3 class="text-xl font-bold mb-4 font-serif text-text-primary">{service.title}</h3>
+            <p class="text-text-muted leading-relaxed">{service.description}</p>
+          </div>
+        </FadeIn>
+      ))}
+    </div>
+  </div>
+</section>
+</file>
+
+<file path="src/components/ThemeToggle.tsx">
+import { useEffect, useState } from 'preact/hooks';
+import { Moon, Sun } from 'lucide-preact';
+
+export default function ThemeToggle() {
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+
+  useEffect(() => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    setTheme(isDark ? 'dark' : 'light');
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  };
+
+  return (
+    <button 
+      onClick={toggleTheme} 
+      className="p-2 rounded-full hover:bg-surface transition-colors focus:outline-none focus:ring-2 focus:ring-brand-accent"
+      aria-label="Toggle Dark Mode"
+    >
+      {theme === 'light' ? <Moon className="w-5 h-5 text-text-muted hover:text-text-primary" /> : <Sun className="w-5 h-5 text-text-muted hover:text-text-primary" />}
+    </button>
+  );
+}
+</file>
+
+<file path="src/data/siteContent.ts">
+import type { SiteData } from '../types';
+
+export const siteContent: SiteData = {
+  hero: {
+    headline: "Membangun Ekosistem Bisnis dan Talenta Unggul",
+    subheadline: "Memadukan ketajaman eksekutif perbankan dan konsultan bisnis dengan pendekatan coaching holistik untuk mencapai pertumbuhan terukur dan berkelanjutan.",
+    primaryCTA: {
+      label: "Mulai Kolaborasi Strategis",
+      url: "mailto:prima.yoga.lan@gmail.com"
+    },
+    secondaryCTA: {
+      label: "Pelajari Profil Saya",
+      url: "#about"
+    }
+  },
+  
+  about: {
+    openingHook: "Kesuksesan sebuah bisnis tidak hanya dibangun di atas kekuatan modal, tetapi oleh ketangguhan talenta yang menggerakkannya.",
+    journey: "Memulai karir di ranah manajemen mutu dan perbaikan sistem (ISO/HACCP), saya belajar esensi dari sebuah presisi. Pemahaman tersebut kemudian membawa saya memimpin operasional strategis sebagai Branch Manager di perbankan BUMN, di mana saya mengelola risiko dan mengorkestrasi investasi finansial bernilai tinggi.",
+    approach: "Sebagai seorang Holisticoach, saya meyakini bahwa standar korporat harus selaras dengan pendekatan psikologis manusia. Saya memastikan setiap mitra bisnis atau investor mendapatkan strategi yang tidak hanya profitable di atas kertas, tetapi juga dapat dieksekusi dengan presisi oleh sumber daya manusia yang terberdayakan.",
+    vision: "Visi jangka panjang saya adalah menjadi mitra strategis untuk ekosistem bisnis dan kewirausahaan di Indonesia. Melalui entitas Alphapunca serta keterlibatan aktif di institusi seperti KADIN dan HIPMI, saya menjembatani ide-ide visioner dengan realitas eksekusi bisnis.",
+    closingLine: "Mari berdiskusi tentang bagaimana kita bisa membangun ekosistem bisnis yang tangguh bersama-sama."
+  },
+  
+  services: [
+    {
+      id: "svc-1",
+      title: "Strategic Banking & Wealth Management",
+      description: "Sebagai praktisi keuangan bersertifikasi resmi (AWP, WPPE, Waperd), saya membantu memetakan manajemen risiko dan menyusun strategi alokasi investasi yang berjangka panjang bagi korporasi maupun portofolio individu Anda."
+    },
+    {
+      id: "svc-2",
+      title: "Executive Coaching & People Development",
+      description: "Saya menghadirkan layanan pelatihan SDM dan executive coaching untuk meningkatkan kapasitas kepemimpinan tim Anda, berbekal metodologi Grounded Coaching, kecerdasan genetik STIFIn, dan hypnotherapy terapan."
+    },
+    {
+      id: "svc-3",
+      title: "Ecosystem & Business Development",
+      description: "Membantu merancang dan mengakselerasi ekosistem bisnis rintisan melalui jaringan strategis lintas sektor. Kami memastikan operasional bisnis berjalan dengan kepatuhan standar mutu (ISO) tertinggi."
+    }
+  ],
+  
+  ecosystemPillars: [
+    {
+      id: "pillar-1",
+      pillarName: "Perbankan, Keuangan & Investasi",
+      description: "Berpengalaman mengelola risiko, operasional cabang, dan investasi kekayaan untuk portofolio bernilai tinggi.",
+      relatedCertIds: ["cert-5", "cert-8", "cert-9", "cert-10"]
+    },
+    {
+      id: "pillar-2",
+      pillarName: "Pengembangan Manusia (People Development)",
+      description: "Meningkatkan kapasitas talenta melalui pendekatan psikologis, coaching, dan pelatihan berbasis standar kompetensi nasional.",
+      relatedCertIds: ["cert-1", "cert-2", "cert-3", "cert-6"]
+    },
+    {
+      id: "pillar-3",
+      pillarName: "Wirausaha & Ekosistem Bisnis",
+      description: "Katalis pembangunan ekosistem bisnis melalui keterlibatan lintas sektor dan pengembangan bisnis rintisan.",
+      relatedCertIds: ["cert-4", "cert-7"]
+    },
+    {
+      id: "pillar-4",
+      pillarName: "Sains & Standarisasi Mutu Industri",
+      description: "Memastikan presisi operasional melalui implementasi ketat sistem manajemen mutu dan keamanan pangan standar global.",
+      relatedCertIds: ["cert-11", "cert-12", "cert-13", "cert-14"]
+    }
+  ],
+
+  credibility: [
+    {
+      id: "cred-1",
+      statement: "Dipercaya memimpin operasional dan risiko finansial sebagai Branch Manager perbankan BUMN dengan kredibilitas sertifikasi dari Lembaga Sertifikasi Profesi Perbankan (LSPP) & TICMI."
+    },
+    {
+      id: "cred-2",
+      statement: "Berpengalaman mengintegrasikan sistem manajemen mutu (ISO 9001, 22000, 14000) ke dalam standar operasional bisnis korporasi berskala nasional."
+    },
+    {
+      id: "cred-3",
+      statement: "Diakui secara aktif dalam memajukan ekosistem pengusaha melalui kepengurusan di KADIN, HIPMI, HIPPI, serta jaringan MMBC - Asosiasi CEO Mastermind Indonesia."
+    }
+  ],
+  
+  certifications: [
+    { id: "cert-1", name: "Professional Trainer", issuer: "BNSP", year: 2025 },
+    { id: "cert-2", name: "Genetic Intelligence Licensed", issuer: "STIFIn Genetic Indonesia", year: 2025 },
+    { id: "cert-3", name: "Certified Hypnotist (CH)", issuer: "Indonesian Hypnosis Centre (IHC)", year: 2025 },
+    { id: "cert-4", name: "Cullinerpreneure", issuer: "Kuliner Mastery Indonesia", year: 2025 },
+    { id: "cert-5", name: "Manajemen Resiko Perbankan", issuer: "LSPP", year: 2024 },
+    { id: "cert-6", name: "G-Coach", issuer: "Asosiasi Grounded Coaching Indonesia", year: 2023 },
+    { id: "cert-7", name: "MMBC", issuer: "ACMI", year: 2022 },
+    { id: "cert-8", name: "Associate Wealth Planner (AWP)", issuer: "FPSB Ltd.", year: 2018 },
+    { id: "cert-9", name: "Wakil Perantara Pedagang Efek (WPPE)", issuer: "TICMI", year: 2018 },
+    { id: "cert-10", name: "Wakil Agen Penjual Reksadana (Waperd)", issuer: "APRDI", year: 2016 },
+    { id: "cert-11", name: "ISO 22000 Foundation", issuer: "PT. Garudafood", year: 2010 },
+    { id: "cert-12", name: "ISO 9001 Foundation", issuer: "PT. Garudafood", year: 2010 },
+    { id: "cert-13", name: "Internal Auditor", issuer: "PT. Garudafood", year: 2010 },
+    { id: "cert-14", name: "HACCP (Food Safety) Auditor", issuer: "PT. Garudafood", year: 2010 }
+  ],
+  
+  seo: {
+    pageTitle: "Prima Yoga Lan | Eksekutif Perbankan & Konsultan Bisnis",
+    metaDescription: "Temukan mitra strategis bisnis Anda bersama Prima Yoga Lan, pakar manajemen perbankan, konsultan bisnis & Holisticoach tersertifikasi nasional. Hubungi sekarang!",
+    ogTitle: "Prima Yoga Lan - Holisticoach & Usefulpreneure",
+    ogDescription: "Memadukan ketajaman eksekutif perbankan dan pendekatan coaching holistik untuk pertumbuhan bisnis yang terukur serta pembentukan talenta kompeten.",
+    ogImage: "/images/hero-portrait.png"
+  },
+
+  contact: {
+    headline: "Siap Membangun Sinergi Bisnis yang Kuat?",
+    body: "Baik Anda seorang investor yang mencari kemitraan strategis, maupun pemimpin perusahaan yang ingin mentransformasi kapasitas tim, pintu diskusi saya selalu terbuka. Mari gabungkan keahlian kita untuk menciptakan dampak yang terukur.",
+    ctaButtonText: "Hubungi Saya via Email",
+    email: "prima.yoga.lan@gmail.com"
+  },
+
+  media: {
+    heroPortrait: "/images/hero-portrait.png",
+    aboutPortrait: "/images/about-portrait.webp"
+  }
+};
+</file>
+
+<file path="src/layouts/BaseLayout.astro">
+---
+import '../styles/global.css';
+import { siteContent } from '../data/siteContent';
+
+const { seo } = siteContent;
+---
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{seo.pageTitle}</title>
+    <meta name="description" content={seo.metaDescription} />
+    
+    <meta property="og:title" content={seo.ogTitle} />
+    <meta property="og:description" content={seo.ogDescription} />
+    <meta property="og:image" content={seo.ogImage} />
+    <meta property="og:type" content="website" />
+    
+    <!-- Inline script to prevent FOUC (Flash of Unstyled Content) for Dark Mode -->
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+    
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+      window.localStorage.setItem('theme', theme);
+    </script>
+  </head>
+  <body class="bg-bg text-text-primary min-h-screen flex flex-col antialiased">
+    <slot />
+  </body>
+</html>
+</file>
+
+<file path="src/pages/index.astro">
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Services from '../components/Services.astro';
+import EcosystemMapping from '../components/EcosystemMapping.astro';
+import Credibility from '../components/Credibility.astro';
+import Certifications from '../components/Certifications.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout>
+  <main class="flex-1">
+    <Navbar />
+    <Hero />
+    <About />
+    <Services />
+    <EcosystemMapping />
+    
+    <section id="credibility" class="py-24 bg-surface px-6 lg:px-8">
+      <div class="max-w-[1024px] mx-auto grid lg:grid-cols-2 gap-16">
+        <Credibility />
+        <Certifications />
+      </div>
+    </section>
+    
+    <ContactCTA />
+    <Footer />
+  </main>
+</BaseLayout>
+</file>
+
+<file path="src/styles/global.css">
+@import "tailwindcss";
+
+@theme {
+  --color-bg: var(--theme-bg);
+  --color-surface: var(--theme-surface);
+  
+  --color-text-primary: var(--theme-text-primary);
+  --color-text-muted: var(--theme-text-muted);
+  --color-text-on-dark: var(--theme-text-on-dark);
+  
+  --color-brand-primary: var(--theme-brand-primary);
+  --color-brand-secondary: var(--theme-brand-secondary);
+  --color-brand-accent: var(--theme-brand-accent);
+  
+  --color-border: var(--theme-border);
+  
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Montserrat', sans-serif;
+  
+  --animate-fade-in-up: fade-in-up 0.5s ease-out forwards;
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+:root {
+  /* Brand Colors */
+  --theme-brand-primary: #111111; 
+  --theme-brand-secondary: #8B0000;
+  --theme-brand-accent: #A66A38; 
+  
+  /* UI Colors */
+  --theme-bg: #111111;
+  --theme-surface: #1A1A1A;
+  
+  /* Text Colors */
+  --theme-text-primary: #F1F1F1;
+  --theme-text-muted: #A0A0A0;
+  --theme-text-on-dark: #FFFFFF;
+  
+  /* Borders & Dividers */
+  --theme-border: #333333;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--theme-bg);
+  color: var(--theme-text-primary);
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+}
+</file>
+
+<file path="src/types/index.ts">
+export interface HeroData {
+  headline: string;
+  subheadline: string;
+  primaryCTA: {
+    label: string;
+    url: string;
+  };
+  secondaryCTA: {
+    label: string;
+    url: string;
+  };
+}
+
+export interface AboutData {
+  openingHook: string;
+  journey: string;
+  approach: string;
+  vision: string;
+  closingLine: string;
+}
+
+export interface ServiceData {
+  id: string;
+  title: string;
+  description: string;
+  icon?: string;
+}
+
+export interface EcosystemPillar {
+  id: string;
+  pillarName: string;
+  description: string;
+  relatedCertIds: string[];
+}
+
+export interface CredibilityItem {
+  id: string;
+  statement: string;
+}
+
+export interface CertificationData {
+  id: string;
+  name: string;
+  issuer: string;
+  year: number;
+}
+
+export interface SeoData {
+  pageTitle: string;
+  metaDescription: string;
+  ogTitle: string;
+  ogDescription: string;
+  ogImage: string;
+}
+
+export interface ContactData {
+  headline: string;
+  body: string;
+  ctaButtonText: string;
+  email: string;
+}
+
+export interface MediaAssets {
+  heroPortrait: string;
+  aboutPortrait: string;
+  heroBackgroundAbstract?: string;
+}
+
+export interface SiteData {
+  hero: HeroData;
+  about: AboutData;
+  services: ServiceData[];
+  ecosystemPillars: EcosystemPillar[];
+  credibility: CredibilityItem[];
+  certifications: CertificationData[];
+  seo: SeoData;
+  contact: ContactData;
+  media: MediaAssets;
+}
+</file>
+
+<file path=".gitignore">
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/
+
+.vercel
+</file>
+
+<file path="AGENTS.md">
+## Development
+
+When starting the dev server, use background mode:
+
+```
+astro dev --background
+```
+
+Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+
+## Documentation
+
+Full documentation: https://docs.astro.build
+
+Consult these guides before working on related tasks:
+
+- [Adding pages, dynamic routes, or middleware](https://docs.astro.build/en/guides/routing/)
+- [Working with Astro components](https://docs.astro.build/en/basics/astro-components/)
+- [Using React, Vue, Svelte, or other framework components](https://docs.astro.build/en/guides/framework-components/)
+- [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
+- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
+- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+</file>
+
+<file path="astro.config.mjs">
+// @ts-check
+import { defineConfig } from 'astro/config';
+
+import tailwindcss from '@tailwindcss/vite';
+import preact from '@astrojs/preact';
+
+// https://astro.build/config
+export default defineConfig({
+  server: {
+    host: true,
+    port: 4321
+  },
+  vite: {
+    plugins: [tailwindcss()]
+  },
+
+  integrations: [preact()]
+});
+</file>
+
+<file path="CLAUDE.md">
+## Development
+
+When starting the dev server, use background mode:
+
+```
+astro dev --background
+```
+
+Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+
+## Documentation
+
+Full documentation: https://docs.astro.build
+
+Consult these guides before working on related tasks:
+
+- [Adding pages, dynamic routes, or middleware](https://docs.astro.build/en/guides/routing/)
+- [Working with Astro components](https://docs.astro.build/en/basics/astro-components/)
+- [Using React, Vue, Svelte, or other framework components](https://docs.astro.build/en/guides/framework-components/)
+- [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
+- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
+- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+</file>
+
+<file path="package.json">
+{
+  "name": "website",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/preact": "^6.0.1",
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/montserrat": "^5.3.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.1.3",
+    "clsx": "^2.1.1",
+    "lucide-preact": "^1.26.0",
+    "preact": "^10.29.7",
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^4.3.3"
+  }
+}
+</file>
+
+<file path="README.md">
+# Astro Starter Kit: Minimal
+
+```sh
+npm create astro@latest -- --template minimal
+```
+
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+
+## 🚀 Project Structure
+
+Inside of your Astro project, you'll see the following folders and files:
+
+```text
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
+
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+
+Any static assets, like images, can be placed in the `public/` directory.
+
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+</file>
+
+<file path="tsconfig.json">
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [
+    ".astro/types.d.ts",
+    "**/*"
+  ],
+  "exclude": [
+    "dist"
+  ],
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  }
+}
+</file>
+
+</files>
